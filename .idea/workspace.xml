@@ -12,27 +12,14 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="e2e_transformer_train.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="e2e_transformer_train.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/e2e_transformer_train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1262">
-              <caret line="133" column="12" lean-forward="true" selection-start-line="133" selection-start-column="12" selection-end-line="133" selection-end-column="12" />
+            <state relative-caret-position="187">
+              <caret line="86" column="67" lean-forward="true" selection-start-line="86" selection-start-column="67" selection-end-line="86" selection-end-column="67" />
               <folding>
                 <element signature="e#215#230#0" expanded="true" />
-                <element signature="e#6432#6489#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="data.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/util/data.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-370">
-              <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
-              <folding>
-                <element signature="e#5429#6408#0" expanded="false" />
-                <element signature="e#6453#7520#0" expanded="false" />
+                <element signature="e#6808#6865#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -51,6 +38,8 @@
     <findStrings>
       <find>np</find>
       <find>loss</find>
+      <find>enc_layers</find>
+      <find>DecoderLayer</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -60,27 +49,27 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/model/transformer/attention.py" />
-        <option value="$PROJECT_DIR$/model/transformer/module.py" />
-        <option value="$PROJECT_DIR$/model/transformer/encoder.py" />
-        <option value="$PROJECT_DIR$/model/transformer/decoder.py" />
-        <option value="$PROJECT_DIR$/model/transformer/transformer.py" />
         <option value="$PROJECT_DIR$/model/transformer/loss.py" />
         <option value="$PROJECT_DIR$/.idea/train.py" />
         <option value="$PROJECT_DIR$/model/transformer/train.py" />
-        <option value="$PROJECT_DIR$/util/data.py" />
         <option value="$PROJECT_DIR$/util/save.py" />
         <option value="$PROJECT_DIR$/util/loss.py" />
         <option value="$PROJECT_DIR$/train.py" />
-        <option value="$PROJECT_DIR$/util/optimizer.py" />
         <option value="$PROJECT_DIR$/util/text2token.py" />
+        <option value="$PROJECT_DIR$/util/data.py" />
+        <option value="$PROJECT_DIR$/model/transformer/encoder.py" />
+        <option value="$PROJECT_DIR$/model/transformer/transformer.py" />
+        <option value="$PROJECT_DIR$/model/transformer/module.py" />
+        <option value="$PROJECT_DIR$/model/transformer/decoder.py" />
+        <option value="$PROJECT_DIR$/util/optimizer.py" />
         <option value="$PROJECT_DIR$/e2e_transformer_train.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="153" />
-    <option name="y" value="10" />
-    <option name="width" value="1159" />
+    <option name="x" value="262" />
+    <option name="y" value="20" />
+    <option name="width" value="1071" />
     <option name="height" value="688" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -122,6 +111,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tf_work" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tf_work" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="transformer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -233,10 +240,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="153" y="10" width="1159" height="688" extended-state="1" />
+    <frame x="262" y="20" width="1071" height="688" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13735783" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="9.478673E-4" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -281,7 +288,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -291,8 +298,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#554#2602#0" expanded="false" />
-            <element signature="e#1547#1586#0" expanded="false" />
+            <element signature="e#236#511#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -327,8 +333,14 @@
         <state relative-caret-position="250">
           <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
+            <element signature="e#198#209#0" expanded="true" />
+            <element signature="e#822#3848#0" expanded="false" />
+            <element signature="e#3895#4168#0" expanded="false" />
+            <element signature="e#4201#4473#0" expanded="false" />
+            <element signature="e#4583#5292#0" expanded="false" />
             <element signature="e#5429#6408#0" expanded="false" />
             <element signature="e#6453#7520#0" expanded="false" />
+            <element signature="e#7556#7826#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -338,31 +350,8 @@
         <state relative-caret-position="1625">
           <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
           <folding>
-            <element signature="e#201#224#0" expanded="false" />
-            <element signature="e#1918#2216#0" expanded="false" />
-            <element signature="e#2363#3536#0" expanded="false" />
+            <element signature="e#201#224#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/transformer/attention.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="18" column="34" lean-forward="false" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/transformer/module.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="57" column="37" lean-forward="true" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/transformer/transformer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1782">
-          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -376,26 +365,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/transformer/decoder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/transformer/train.py" />
-    <entry file="file://$PROJECT_DIR$/model/transformer/encoder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1625">
-          <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-          <folding>
-            <element signature="e#201#224#0" expanded="false" />
-            <element signature="e#1918#2216#0" expanded="false" />
-            <element signature="e#2363#3536#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/util/loss.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="700">
@@ -417,17 +387,6 @@
             <element signature="e#4927#4958#0" expanded="false" />
             <element signature="e#5968#5999#0" expanded="false" />
             <element signature="e#7494#7525#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/util/optimizer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="e#554#2602#0" expanded="false" />
-            <element signature="e#1547#1586#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -459,18 +418,94 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/util/text2token.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="86" column="13" lean-forward="true" selection-start-line="86" selection-start-column="13" selection-end-line="86" selection-end-column="13" />
+        <state relative-caret-position="2150">
+          <caret line="86" column="13" lean-forward="false" selection-start-line="86" selection-start-column="13" selection-end-line="86" selection-end-column="13" />
           <folding>
             <element signature="e#145#154#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/model/transformer/transformer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="67">
+          <caret line="4" column="24" lean-forward="true" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+          <folding>
+            <element signature="e#205#228#0" expanded="false" />
+            <element signature="e#1017#1537#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/transformer/decoder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="218" column="25" lean-forward="true" selection-start-line="218" selection-start-column="25" selection-end-line="218" selection-end-column="25" />
+          <folding>
+            <element signature="e#201#224#0" expanded="true" />
+            <element signature="e#393#8795#0" expanded="false" />
+            <element signature="e#4747#8795#0" expanded="false" />
+            <element signature="e#8845#10480#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="617">
+          <caret line="28" column="31" lean-forward="false" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+          <folding>
+            <element signature="e#198#209#0" expanded="true" />
+            <element signature="e#822#3848#0" expanded="false" />
+            <element signature="e#3895#4168#0" expanded="false" />
+            <element signature="e#4201#4473#0" expanded="false" />
+            <element signature="e#4583#5292#0" expanded="false" />
+            <element signature="e#5429#6408#0" expanded="false" />
+            <element signature="e#6453#7520#0" expanded="false" />
+            <element signature="e#7556#7826#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/transformer/module.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="80" column="0" lean-forward="true" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+          <folding>
+            <element signature="e#200#223#0" expanded="true" />
+            <element signature="e#282#380#0" expanded="false" />
+            <element signature="e#431#899#0" expanded="false" />
+            <element signature="e#959#1161#0" expanded="false" />
+            <element signature="e#1198#1507#0" expanded="false" />
+            <element signature="e#1584#2213#0" expanded="false" />
+            <element signature="e#2286#2587#0" expanded="false" />
+            <element signature="e#2643#2932#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/transformer/encoder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1150">
+          <caret line="26" column="70" lean-forward="true" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="70" />
+          <folding>
+            <element signature="e#201#224#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/transformer/attention.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="59" column="43" lean-forward="true" selection-start-line="59" selection-start-column="43" selection-end-line="59" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/transformer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="270" column="0" lean-forward="true" selection-start-line="270" selection-start-column="0" selection-end-line="284" selection-end-column="27" />
+        <state relative-caret-position="114">
+          <caret line="125" column="4" lean-forward="true" selection-start-line="125" selection-start-column="4" selection-end-line="125" selection-end-column="4" />
           <folding>
             <element signature="e#98#196#0" expanded="false" />
             <element signature="e#469#937#0" expanded="false" />
@@ -479,31 +514,28 @@
             <element signature="e#4384#4584#0" expanded="false" />
             <element signature="e#4634#5678#0" expanded="false" />
             <element signature="e#5728#7316#0" expanded="false" />
-            <element signature="e#7364#8548#0" expanded="false" />
             <element signature="e#8585#9862#0" expanded="false" />
-            <element signature="e#9911#10576#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/optimizer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" column="38" lean-forward="true" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
+          <folding>
+            <element signature="e#236#511#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/e2e_transformer_train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1262">
-          <caret line="133" column="12" lean-forward="true" selection-start-line="133" selection-start-column="12" selection-end-line="133" selection-end-column="12" />
+        <state relative-caret-position="187">
+          <caret line="86" column="67" lean-forward="true" selection-start-line="86" selection-start-column="67" selection-end-line="86" selection-end-column="67" />
           <folding>
             <element signature="e#215#230#0" expanded="true" />
-            <element signature="e#6432#6489#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/util/data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-370">
-          <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
-          <folding>
-            <element signature="e#5429#6408#0" expanded="false" />
-            <element signature="e#6453#7520#0" expanded="false" />
+            <element signature="e#6808#6865#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -58,8 +58,8 @@ class Transformer(tf.keras.Model):
         Returns:
             nbest_hyps:
         """
-        encoder_outputs, *_ = self.encoder(input.unsqueeze(0), input_length)
-        nbest_hyps = self.decoder.recognize_beam(encoder_outputs[0],
+        encoder_output, *_ = self.encoder(input.unsqueeze(0), input_length)
+        nbest_hyps = self.decoder.recognize_beam(encoder_output[0],
                                                  char_list,
                                                  args)
         return nbest_hyps
@@ -73,25 +73,22 @@ class Transformer(tf.keras.Model):
 
     @classmethod
     def load_model_from_package(cls, package):
-        encoder = Encoder(package['d_input'],
-                          package['n_layers_enc'],
+        encoder = Encoder(package['n_layers_enc'],
                           package['n_heads'],
                           package['d_model'],
                           package['d_dff'],
                           pe_maxlen=package['pe_maxlen'],
-                          dropout_rate=package['dropout'],)
+                          dropout_rate=package['dropout_rate'],)
         decoder = Decoder(package['sos_id'],
                           package['eos_id'],
                           package['vocab_size'],
                           package['d_word_vec'],
                           package['n_layers_dec'],
-                          package['n_head'],
-                          package['d_k'],
-                          package['d_v'],
+                          package['n_heads'],
                           package['d_model'],
-                          package['d_inner'],
-                          dropout=package['dropout'],
-                          tgt_emb_prj_weight_sharing=package['tgt_emb_prj_weight_sharing'],
+                          package['d_dff'],
+                          dropout_rate=package['dropout'],
+                          tgt_emb_prj_weight_share=package['tgt_emb_prj_weight_share'],
                           pe_maxlen=package['pe_maxlen'],
                           )
         model = cls(encoder, decoder)
@@ -106,11 +103,8 @@ class Transformer(tf.keras.Model):
             'LFR_m': LFR_m,
             'LFR_n': LFR_n,
             # encoder
-            'd_input': model.encoder.d_input,
             'n_layers_enc': model.encoder.n_layers,
-            'n_head': model.encoder.n_head,
-            # 'd_k': model.encoder.d_k,
-            # 'd_v': model.encoder.d_v,
+            'n_heads': model.encoder.n_head,
             'd_model': model.encoder.d_model,
             'd_dff': model.encoder.d_dff,
             'dropout_rate': model.encoder.dropout_rate,
@@ -121,7 +115,7 @@ class Transformer(tf.keras.Model):
             'vocab_size': model.decoder.n_tgt_vocab,
             'd_word_vec': model.decoder.d_word_vec,
             'n_layers_dec': model.decoder.n_layers,
-            'tgt_emb_prj_weight_sharing': model.decoder.tgt_emb_prj_weight_sharing,
+            'tgt_emb_prj_weight_share': model.decoder.tgt_emb_prj_weight_share,
             # state
             'state_dict': model.state_dict(),
             'optim_dict': optimizer.state_dict(),

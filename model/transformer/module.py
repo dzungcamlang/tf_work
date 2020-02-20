@@ -40,6 +40,17 @@ def point_wise_feed_forward_network(d_model, d_dff):
     ])
 
 
+def get_subsequent_mask(seq):
+    ''' For masking out the subsequent info. '''
+
+    sz_b, len_s = seq.size()
+    subsequent_mask = torch.triu(
+        torch.ones((len_s, len_s), device=seq.device, dtype=torch.uint8), diagonal=1)
+    subsequent_mask = subsequent_mask.unsqueeze(0).expand(sz_b, -1, -1)  # b x ls x ls
+
+    return subsequent_mask
+
+
 def get_non_pad_mask(padded_input, input_lengths=None, pad_idx=None):
     """padding position is set to 0, either use input_lengths or pad_idx
     """
@@ -66,3 +77,14 @@ def get_att_pad_mask(padded_input, input_lengths, expand_length):
     pad_mask = non_pad_mask.squeeze(-1).lt(1)
     attn_mask = pad_mask.unsqueeze(1).expand(-1, expand_length, -1)
     return attn_mask
+
+
+def get_att_key_pad_mask(seq_k, seq_q, pad_idx):
+    ''' For masking out the padding part of key sequence. '''
+
+    # Expand to fit the shape of key query attention matrix.
+    len_q = seq_q.size(1)
+    padding_mask = seq_k.eq(pad_idx)
+    padding_mask = padding_mask.unsqueeze(1).expand(-1, len_q, -1)  # b x lq x lk
+
+    return padding_mask

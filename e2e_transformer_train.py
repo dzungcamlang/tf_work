@@ -48,7 +48,7 @@ parser.add_argument('--d_input', default=80, type=int,
                     help='Dim of encoder input (before LFR)')
 parser.add_argument('--n_layers_enc', default=6, type=int,
                     help='Number of encoder stacks')
-parser.add_argument('--n_head', default=8, type=int,
+parser.add_argument('--n_heads', default=8, type=int,
                     help='Number of Multi Head Attention (MHA)')
 parser.add_argument('--d_k', default=64, type=int,
                     help='Dimension of key')
@@ -94,32 +94,48 @@ parser.add_argument('--warmup_steps', default=4000, type=int,
 
 def main(args):
 
-    tr_dataset = AudioDataset(args.train_json, args.batch_size,
-                              args.maxlen_in, args.maxlen_out,
+    tr_dataset = AudioDataset(args.train_json,
+                              args.batch_size,
+                              args.maxlen_in,
+                              args.maxlen_out,
                               batch_frames=args.batch_frames)
-    cv_dataset = AudioDataset(args.valid_json, args.batch_size,
-                              args.maxlen_in, args.maxlen_out,
+    cv_dataset = AudioDataset(args.valid_json,
+                              args.batch_size,
+                              args.maxlen_in,
+                              args.maxlen_out,
                               batch_frames=args.batch_frames)
-    tr_loader = AudioDataLoader(tr_dataset, batch_size=1,
+    tr_loader = AudioDataLoader(tr_dataset,
+                                batch_size=1,
                                 num_workers=args.num_workers,
                                 shuffle=args.shuffle,
-                                LFR_m=args.LFR_m, LFR_n=args.LFR_n)
-    cv_loader = AudioDataLoader(cv_dataset, batch_size=1,
+                                LFR_m=args.LFR_m,
+                                LFR_n=args.LFR_n)
+    cv_loader = AudioDataLoader(cv_dataset,
+                                batch_size=1,
                                 num_workers=args.num_workers,
-                                LFR_m=args.LFR_m, LFR_n=args.LFR_n)
+                                LFR_m=args.LFR_m,
+                                LFR_n=args.LFR_n)
     # load dictionary and generate char_list, sos_id, eos_id
     char_list, sos_id, eos_id = process_dict(args.dict)
     vocab_size = len(char_list)
     data = {'tr_loader': tr_loader, 'cv_loader': cv_loader}
     # model
-    encoder = Encoder(args.d_input * args.LFR_m, args.n_layers_enc, args.n_head,
-                      args.d_k, args.d_v, args.d_model, args.d_dff,
-                      dropout=args.dropout, pe_maxlen=args.pe_maxlen)
-    decoder = Decoder(sos_id, eos_id, vocab_size,
-                      args.d_word_vec, args.n_layers_dec, args.n_head,
-                      args.d_k, args.d_v, args.d_model, args.d_dff,
-                      dropout=args.dropout,
-                      tgt_emb_prj_weight_sharing=args.tgt_emb_prj_weight_sharing,
+    encoder = Encoder(args.n_layers_enc,
+                      args.n_heads,
+                      args.d_model,
+                      args.d_dff,
+                      dropout_rate=args.dropout_rate,
+                      pe_maxlen=args.pe_maxlen)
+    decoder = Decoder(sos_id,
+                      eos_id,
+                      vocab_size,
+                      args.d_word_vec,
+                      args.n_layers_dec,
+                      args.n_heads,
+                      args.d_model,
+                      args.d_dff,
+                      dropout_rate=args.dropout_rate,
+                      tgt_emb_prj_weight_share=args.tgt_emb_prj_weight_share,
                       pe_maxlen=args.pe_maxlen)
     model = Transformer(encoder, decoder)
     print(model)

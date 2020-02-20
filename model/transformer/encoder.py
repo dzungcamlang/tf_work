@@ -14,15 +14,15 @@ from model.transformer.module import *
 
 
 class Encoder(tf.keras.layers.Layer):
-    def __init__(self, n_layers, n_heads, d_model, d_dff, pe_maxlen=5000, dropout_rate=0.1):
+    def __init__(self, n_layers, n_heads, d_model, d_dff, dropout_rate=0.1, pe_maxlen=5000):
         super(Encoder, self).__init__()
 
         self.n_layers = n_layers
         self.n_head = n_heads
         self.d_model = d_model
         self.d_inner = d_dff
-        self.pe_maxlen = pe_maxlen
         self.dropout_rate = dropout_rate
+        self.pe_maxlen = pe_maxlen
 
         self.dense = tf.keras.layers.Dense(d_model, activation='relu')
 
