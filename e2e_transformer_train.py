@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# @Time    : 2020/2/19 15:30 
+# @Time    : 2020/2/20 10:01 
 # @Author  : Ming Liu
 # @License : Ali Licence
 # @Site    :
-# @File    : train.py 
+# @File    : e2e_transformer_train.py 
 # @Software: PyCharm Community Edition
 
 import argparse
@@ -12,35 +12,44 @@ import tensorflow as tf
 
 from util.data import *
 from util.save import *
+from util.loss import *
 from util.optimizer import *
 from model.transformer.encoder import Encoder
 from model.transformer.decoder import Decoder
 from model.transformer.transformer import Transformer
 
-parser = argparse.ArgumentParser("End-to-End Automatic Speech Recognition Training.")
+parser = argparse.ArgumentParser(" End-to-End Automatic Speech Recognition Training. ")
 
-# General config
+# Data Config
 parser.add_argument('--train-json', type=str, default=None,
                     help='Filename of train label data (json)')
 parser.add_argument('--valid-json', type=str, default=None,
                     help='Filename of validation label data (json)')
 parser.add_argument('--dict', type=str, required=True,
                     help='Dictionary which should include <unk> <sos> <eos>')
+parser.add_argument('--save-folder', default='exp/temp',
+                    help='Location to save epoch models')
+parser.add_argument('--checkpoint', dest='checkpoint', default=0, type=int,
+                    help='Enables checkpoint saving of model')
+parser.add_argument('--continue-from', default='',
+                    help='Continue from checkpoint model')
+parser.add_argument('--model-path', default='final.pth.tar',
+                    help='Location to save best validation model')
 
-# Low Frame Rate: stacking and skipping frames
+# Low Frame Rate (stacking and skipping frames)
 parser.add_argument('--LFR_m', default=4, type=int,
                     help='Low Frame Rate: number of frames to stack')
 parser.add_argument('--LFR_n', default=3, type=int,
                     help='Low Frame Rate: number of frames to skip')
 
-# Network
+# Network Config
 # encoder
 parser.add_argument('--d_input', default=80, type=int,
                     help='Dim of encoder input (before LFR)')
 parser.add_argument('--n_layers_enc', default=6, type=int,
                     help='Number of encoder stacks')
 parser.add_argument('--n_head', default=8, type=int,
-                    help='Number of Multi Head Attention ')
+                    help='Number of Multi Head Attention (MHA)')
 parser.add_argument('--d_k', default=64, type=int,
                     help='Dimension of key')
 parser.add_argument('--d_v', default=64, type=int,
@@ -59,13 +68,13 @@ parser.add_argument('--d_word_vec', default=512, type=int,
 parser.add_argument('--n_layers_dec', default=6, type=int,
                     help='Number of decoder stacks')
 parser.add_argument('--tgt_emb_prj_weight_sharing', default=1, type=int,
-                    help='Share decoder embedding with decoder projection')
+                    help='share decoder embedding with decoder projection')
+parser.add_argument('--label_smoothing', default=0.1, type=float,
+                    help='label smoothing')
 
 # Training config
 parser.add_argument('--epochs', default=30, type=int,
                     help='Number of maximum epochs')
-parser.add_argument('--label_smoothing', default=0.1, type=float,
-                    help='label smoothing')
 parser.add_argument('--shuffle', default=0, type=int,
                     help='Reshuffle the data at every epoch')
 parser.add_argument('--batch-size', default=32, type=int,
@@ -79,24 +88,12 @@ parser.add_argument('--maxlen-out', default=150, type=int, metavar='ML',
 parser.add_argument('--num-workers', default=4, type=int,
                     help='Number of workers to generate minibatch')
 parser.add_argument('--k', default=1.0, type=float,
-                    help='tunable scalar multiply to learning rate')
+                    help='Tunable scalar multiply to learning rate')
 parser.add_argument('--warmup_steps', default=4000, type=int,
                     help='Warmup steps')
-parser.add_argument('--save-folder', default='exp/temp',
-                    help='Location to save epoch models')
-parser.add_argument('--checkpoint', dest='checkpoint', default=0, type=int,
-                    help='Enables checkpoint saving of model')
-parser.add_argument('--continue-from', default='',
-                    help='Continue from checkpoint model')
-parser.add_argument('--model-path', default='final.pth.tar',
-                    help='Location to save best validation model')
-parser.add_argument('--print-freq', default=10, type=int,
-                    help='Frequency of printing training infomation')
-
 
 def main(args):
-    # Construct Solver
-    # data
+
     tr_dataset = AudioDataset(args.train_json, args.batch_size,
                               args.maxlen_in, args.maxlen_out,
                               batch_frames=args.batch_frames)
@@ -116,11 +113,11 @@ def main(args):
     data = {'tr_loader': tr_loader, 'cv_loader': cv_loader}
     # model
     encoder = Encoder(args.d_input * args.LFR_m, args.n_layers_enc, args.n_head,
-                      args.d_k, args.d_v, args.d_model, args.d_inner,
+                      args.d_k, args.d_v, args.d_model, args.d_dff,
                       dropout=args.dropout, pe_maxlen=args.pe_maxlen)
     decoder = Decoder(sos_id, eos_id, vocab_size,
                       args.d_word_vec, args.n_layers_dec, args.n_head,
-                      args.d_k, args.d_v, args.d_model, args.d_inner,
+                      args.d_k, args.d_v, args.d_model, args.d_dff,
                       dropout=args.dropout,
                       tgt_emb_prj_weight_sharing=args.tgt_emb_prj_weight_sharing,
                       pe_maxlen=args.pe_maxlen)
@@ -128,14 +125,14 @@ def main(args):
     print(model)
     model.cuda()
     # optimizer
-    optimizer = TransformerOptimizer(
-        torch.optim.Adam(model.parameters(), betas=(0.9, 0.98), eps=1e-09),
+    optimizier = TransformerOptimizer(
+        torch.optimi.Adam(model.parameters(), betas=(0.9, 0.98), eps=1e-09),
         args.k,
         args.d_model,
         args.warmup_steps)
 
     # solver
-    solver = Solver(data, model, optimizer, args)
+    solver = Solver(data, model, optimizier, args)
     solver.train()
 
 
