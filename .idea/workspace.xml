@@ -1,30 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="87525202-bc0f-4b56-a1d8-759abd14def9" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/tf_work.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/train.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/e2e_transformer.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/e2e_transformer_train.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/model/transformer/attention.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/model/transformer/decoder.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/model/transformer/encoder.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/model/transformer/module.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/model/transformer/transformer.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/transformer.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/util/data.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/util/data2json.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/util/dump.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/util/loss.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/util/optimizer.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/util/save.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/util/text2token.py" afterPath="" />
-    </list>
+    <list default="true" id="87525202-bc0f-4b56-a1d8-759abd14def9" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
