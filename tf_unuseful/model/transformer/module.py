@@ -43,7 +43,7 @@ def point_wise_feed_forward_network(d_model, d_dff):
 def get_subsequent_mask(seq):
     ''' For masking out the subsequent info. '''
 
-    sz_b, len_s = seq.size()
+    sz_b, len_s = tf.shape(seq)[0], tf.shape(seq)[1]
     subsequent_mask = torch.triu(
         torch.ones((len_s, len_s), device=seq.device, dtype=torch.uint8), diagonal=1)
     subsequent_mask = subsequent_mask.unsqueeze(0).expand(sz_b, -1, -1)  # b x ls x ls

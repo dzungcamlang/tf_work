@@ -55,12 +55,12 @@ class Decoder(tf.keras.layers.Layer):
         """Generate decoder input and output label from padded_input
         Add <sos> to decoder input, and add <eos> to decoder output label
         """
-        enc = [y[y != IGNORE_ID] for y in decoder_input]  # parse padded ys
+        enc = [en[en != IGNORE_ID] for en in decoder_input]  # parse padded ys
         # prepare input and output word sequences with sos/eos IDs
         eos = enc[0].new([self.eos_id])
         sos = enc[0].new([self.sos_id])
-        enc_in = [torch.cat([sos, y], dim=0) for y in ys]
-        enc_out = [torch.cat([y, eos], dim=0) for y in ys]
+        enc_in = [tf.concat([sos, x], 0) for x in enc]
+        enc_out = [tf.concat([x, eos], 0) for x in enc]
         # padding for ys with -1
         # pys: utt x olen
         enc_in_pad = pad_list(enc_in, self.eos_id)

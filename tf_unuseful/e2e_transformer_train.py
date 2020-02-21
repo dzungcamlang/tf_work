@@ -44,23 +44,17 @@ parser.add_argument('--LFR_n', default=3, type=int,
 
 # Network Config
 # encoder
-parser.add_argument('--d_input', default=80, type=int,
-                    help='Dim of encoder input (before LFR)')
 parser.add_argument('--n_layers_enc', default=6, type=int,
                     help='Number of encoder stacks')
 parser.add_argument('--n_heads', default=8, type=int,
                     help='Number of Multi Head Attention (MHA)')
-parser.add_argument('--d_k', default=64, type=int,
-                    help='Dimension of key')
-parser.add_argument('--d_v', default=64, type=int,
-                    help='Dimension of value')
 parser.add_argument('--d_model', default=512, type=int,
                     help='Dimension of model')
 parser.add_argument('--d_dff', default=2048, type=int,
                     help='Dimension of dff')
 parser.add_argument('--dropout_rate', default=0.1, type=float,
                     help='Dropout rate')
-parser.add_argument('--pe_maxlen', default=5000, type=int,
+parser.add_argument('--pe_maxlen', default=10000, type=int,
                     help='Positional Encoding max len')
 # decoder
 parser.add_argument('--d_word_vec', default=512, type=int,
@@ -77,7 +71,7 @@ parser.add_argument('--epochs', default=30, type=int,
                     help='Number of maximum epochs')
 parser.add_argument('--shuffle', default=0, type=int,
                     help='Reshuffle the data at every epoch')
-parser.add_argument('--batch-size', default=32, type=int,
+parser.add_argument('--batch-size', default=64, type=int,
                     help='Batch size')
 parser.add_argument('--batch_frames', default=0, type=int,
                     help='Batch frames. If this is not 0, batch size will make no sense')
@@ -87,8 +81,6 @@ parser.add_argument('--maxlen-out', default=150, type=int, metavar='ML',
                     help='Batch size is reduced if the output sequence length > ML')
 parser.add_argument('--num-workers', default=4, type=int,
                     help='Number of workers to generate minibatch')
-parser.add_argument('--k', default=1.0, type=float,
-                    help='Tunable scalar multiply to learning rate')
 parser.add_argument('--warmup_steps', default=4000, type=int,
                     help='Warmup steps')
 
@@ -141,14 +133,12 @@ def main(args):
     print(model)
     model.cuda()
     # optimizer
-    optimizier = TransformerOptimizer(
-        torch.optimi.Adam(model.parameters(), betas=(0.9, 0.98), eps=1e-09),
-        args.k,
-        args.d_model,
-        args.warmup_steps)
+
+    learning_rate = CustomSchedule(args.d_model, warmup_steps=args.warmup_steps)
+    optimizer = tf.keras.optimizers.Adam(learning_rate, beta_1=0.9, beta_2=0.98, epsilon=1e-9)
 
     # solver
-    solver = Solver(data, model, optimizier, args)
+    solver = Solver(data, model, optimizer, args)
     solver.train()
 
 

@@ -58,7 +58,7 @@ class Transformer(tf.keras.Model):
         Returns:
             nbest_hyps:
         """
-        encoder_output, *_ = self.encoder(input.unsqueeze(0), input_length)
+        encoder_output, _ = self.encoder(input.unsqueeze(0), input_length)
         nbest_hyps = self.decoder.recognize_beam(encoder_output[0],
                                                  char_list,
                                                  args)
@@ -87,7 +87,7 @@ class Transformer(tf.keras.Model):
                           package['n_heads'],
                           package['d_model'],
                           package['d_dff'],
-                          dropout_rate=package['dropout'],
+                          dropout_rate=package['dropout_rate'],
                           tgt_emb_prj_weight_share=package['tgt_emb_prj_weight_share'],
                           pe_maxlen=package['pe_maxlen'],
                           )
@@ -104,7 +104,7 @@ class Transformer(tf.keras.Model):
             'LFR_n': LFR_n,
             # encoder
             'n_layers_enc': model.encoder.n_layers,
-            'n_heads': model.encoder.n_head,
+            'n_heads': model.encoder.n_heads,
             'd_model': model.encoder.d_model,
             'd_dff': model.encoder.d_dff,
             'dropout_rate': model.encoder.dropout_rate,

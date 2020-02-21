@@ -26,7 +26,7 @@ Logic:
 
 IGNORE_ID = -1
 
-class AudioDataset(data.Dataset):
+class AudioDataset(object):
     """
     TODO: this is a little HACK now, put batch_size here now.
           remove batch_size to dataloader later.
@@ -41,6 +41,7 @@ class AudioDataset(data.Dataset):
             num_batches: for debug. only use num_batches minibatch but not all.
         """
         super(AudioDataset, self).__init__()
+
         with open(data_path, 'rb') as f:
             data = json.load(f)['utts']
         # sort it by input lengths (long to short)
